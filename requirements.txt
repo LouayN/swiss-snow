@@ -7,3 +7,4 @@ streamlit>=1.32
 pydeck>=0.9
 requests>=2.31
 hopsworks[python]>=4.0
+matplotlib>=3.7
