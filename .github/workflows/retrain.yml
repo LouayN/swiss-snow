@@ -31,8 +31,10 @@ jobs:
             requests>=2.31 \
             hopsworks[python]>=4.0
 
-      - name: Fetch latest MeteoSwiss data
-        run: python src/data/fetch_meteoswiss.py recent
+      - name: Fetch MeteoSwiss data (historical + recent)
+        run: |
+          python src/data/fetch_meteoswiss.py historical
+          python src/data/fetch_meteoswiss.py recent
 
       - name: Rebuild features
         run: python src/features/build_features.py
