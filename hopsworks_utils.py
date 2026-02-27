@@ -26,9 +26,7 @@ FG_RECENT_NAME = "snow_features_recent"
 FG_RECENT_VERSION = 1
 MODEL_REGRESSOR_NAME = "snow_quality_regressor"
 MODEL_CLASSIFIER_NAME = "good_ski_day_classifier"
-MODEL_VERSION = 1
-
-HOPSWORKS_HOST = os.environ.get("HOPSWORKS_HOST", "eu-west.cloud.hopsworks.ai")
+HOPSWORKS_HOST = os.environ.get("HOPSWORKS_HOST", "c.app.hopsworks.ai")
 HOPSWORKS_PROJECT = os.environ.get("HOPSWORKS_PROJECT", "swiss_snow")
 
 _project = None
@@ -149,7 +147,7 @@ def push_model(model_name: str, model_path: str | Path, metrics: dict) -> None:
     log.info("Model '%s' pushed to Hopsworks registry (metrics: %s).", model_name, metrics)
 
 
-def load_model_dir(model_name: str, version: int = MODEL_VERSION) -> Path:
+def load_model_dir(model_name: str, version: int = None) -> Path:
     """
     Download a model from the Hopsworks Model Registry.
 
