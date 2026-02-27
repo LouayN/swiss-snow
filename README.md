@@ -6,7 +6,7 @@ colorTo: indigo
 sdk: streamlit
 sdk_version: 1.32.0
 app_file: app.py
-pinned: false
+
 ---
 
 # Swiss Snow Quality Predictor
@@ -126,7 +126,7 @@ All pipelines activate Hopsworks automatically when the key is present and degra
 
 ---
 
-## Deployment (fully free)
+## Deployment 
 
 The live app runs on Hugging Face Spaces. On cold start it fetches the latest MeteoSwiss data automatically.
 
