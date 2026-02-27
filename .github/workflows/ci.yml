@@ -18,7 +18,10 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install -r requirements.txt ruff
+        run: |
+          pip install -r requirements.txt ruff \
+            mlflow>=2.10 fastapi uvicorn \
+            prefect>=3.0 evidently>=0.4
 
       - name: Lint with ruff
         run: ruff check src/ pipelines/ --ignore E501
