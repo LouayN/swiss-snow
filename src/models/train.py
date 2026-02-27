@@ -19,7 +19,6 @@ from pathlib import Path
 
 import mlflow
 import mlflow.xgboost
-import numpy as np
 import pandas as pd
 import xgboost as xgb
 from sklearn.metrics import (
