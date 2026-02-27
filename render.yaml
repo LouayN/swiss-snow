@@ -1,0 +1,31 @@
+# Render Blueprint — defines both services declaratively.
+# Connect your GitHub repo at https://dashboard.render.com/blueprints
+# and Render will auto-create both services from this file.
+
+services:
+  # ── FastAPI REST API ────────────────────────────────────────────────────────
+  - type: web
+    name: swiss-snow-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    # Render injects $PORT; must listen on it
+    dockerCommand: uvicorn src.api.app:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: PORT
+        value: 10000
+
+  # ── Streamlit interactive map ───────────────────────────────────────────────
+  - type: web
+    name: swiss-snow-streamlit
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerCommand: >-
+      streamlit run app.py
+      --server.port $PORT
+      --server.address 0.0.0.0
+      --server.headless true
+    plan: free
+    envVars:
+      - key: PORT
+        value: 10000

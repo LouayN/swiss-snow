@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Lint & smoke test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt ruff
+
+      - name: Lint with ruff
+        run: ruff check src/ pipelines/ --ignore E501
+
+      - name: Smoke test — feature pipeline imports
+        run: python -c "from src.features.build_features import FEATURE_COLS, compute_features; print('feature pipeline ok')"
+
+      - name: Smoke test — monitoring imports
+        run: python -c "from src.monitoring.drift_report import generate_drift_report; print('monitoring ok')"
+
+      - name: Smoke test — Prefect pipeline imports
+        run: python -c "from pipelines.weekly_retrain import weekly_retrain; print('pipeline ok:', weekly_retrain.name)"
+
+      - name: Smoke test — FastAPI app imports
+        run: python -c "from src.api.app import app; print('api ok')"

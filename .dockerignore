@@ -1,0 +1,13 @@
+data/raw/
+mlruns/
+reports/
+*.parquet
+*.ipynb
+__pycache__/
+*.pyc
+*.pyo
+.git/
+.github/
+.env
+.DS_Store
+notebooks/

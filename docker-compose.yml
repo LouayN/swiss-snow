@@ -1,0 +1,26 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount raw data and models at runtime so the image stays small locally.
+      # (models/ and data/processed/ are baked in for cloud/Render deploy)
+      - ./data:/app/data:ro
+      - ./models:/app/models:ro
+    command: uvicorn src.api.app:app --host 0.0.0.0 --port 8000
+    restart: unless-stopped
+
+  streamlit:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data:ro
+      - ./models:/app/models:ro
+    command: >
+      streamlit run app.py
+      --server.port 8501
+      --server.address 0.0.0.0
+      --server.headless true
+    restart: unless-stopped

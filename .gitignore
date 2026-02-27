@@ -1,0 +1,35 @@
+# Large data files
+data/raw/
+data/processed/
+*.parquet
+
+# MLflow tracking runs
+mlruns/
+
+# Drift reports 
+reports/*.html
+reports/*.json
+
+# Model binaries — managed via Hopsworks Model Registry
+models/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Environments
+.env
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
