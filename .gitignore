@@ -10,8 +10,8 @@ mlruns/
 reports/*.html
 reports/*.json
 
-# Model binaries — managed via Hopsworks Model Registry
-models/
+# Model binaries tracked in git (small JSON files ~3MB)
+# models/
 
 # Python
 __pycache__/
