@@ -162,7 +162,11 @@ df_map = df_all[
 if not show_no_sensor:
     df_map = df_map[df_map["has_sensor"]]
 
-df_map["color"]  = df_map["snow_quality"].apply(score_to_color)
+_colors = df_map["snow_quality"].apply(score_to_color)
+df_map["cr"] = [c[0] for c in _colors]
+df_map["cg"] = [c[1] for c in _colors]
+df_map["cb"] = [c[2] for c in _colors]
+df_map["ca"] = [c[3] for c in _colors]
 df_map["radius"] = (df_map["altitude"] / 3600 * 6000 + 3000).clip(lower=3000).astype(int)
 
 df_sensor = df_map[df_map["has_sensor"]]
@@ -189,7 +193,7 @@ with col_map:
         "ScatterplotLayer",
         data=df_map,
         get_position=["lon", "lat"],
-        get_fill_color="color",
+        get_fill_color=["cr", "cg", "cb", "ca"],
         get_radius="radius",
         radius_min_pixels=5,
         radius_max_pixels=22,
