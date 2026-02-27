@@ -241,7 +241,7 @@ with col_map:
         map_style=pdk.map_styles.CARTO_LIGHT,
     )
 
-    st.pydeck_chart(deck, use_container_width=True, height=520)
+    st.pydeck_chart(deck, use_container_width=True)
 
 with col_detail:
     st.subheader("Station detail")
