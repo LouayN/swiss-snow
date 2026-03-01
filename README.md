@@ -12,7 +12,7 @@ app_file: app.py
 # Swiss Snow Quality Predictor
 
 End-to-end ML system predicting **next-day snow quality** (0–100 score) and **good ski day probability** for 75 Swiss alpine stations. Powered by 16 years of official MeteoSwiss telemetry and served via a live interactive map.
-
+![Screenshot](data/app.png)
 **Models** — trained on 49K station-days, validated on held-out 2023–2025 data:
 
 | Model | Task | MAE | R² | AUC-ROC | Avg Precision |
